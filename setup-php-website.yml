@@ -1,6 +1,6 @@
 ---
 - name: Configure example webpage
-  hosts: all
+  hosts: webhosts
   become: yes
 
   vars_files:

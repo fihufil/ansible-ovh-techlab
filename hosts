@@ -1,0 +1,6 @@
+[all:vars]
+ansible_user=ubuntu
+
+[webhosts]
+roadshow-vm2 ansible_host=192.0.2.2
+roadshow-vm3 ansible_host=10.250.1.200  ansible_ssh_common_args='-o ProxyJump=ubuntu@192.0.2.2'

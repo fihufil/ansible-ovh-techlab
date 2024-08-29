@@ -32,19 +32,3 @@ echo 'Please enter your CA certificate (once pasted press ctrl-d to save!): '
 CA_CERT="$(</dev/stdin)"
 
 echo "$CA_CERT" > files/ovh-db.crt
-
-echo 'Please enter IPs of your instances (once pasted press ctrl-d to save!): ' 
-
-IPS="$(</dev/stdin)"
-
-echo -n "Writing hosts file... "
-
-cat > hosts<< EOF
-[all:vars]
-ansible_user=ubuntu
-
-[webhosts]
-$IPS
-EOF
-
-echo '... done!'
