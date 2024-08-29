@@ -1,0 +1,45 @@
+---
+- name: Configure example webpage
+  hosts: all
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install requirements
+      apt:
+        name:
+          - apache2
+          - php
+          - libapache2-mod-php
+          - php-mysql
+        state: present
+
+    - name: Copy webpage files
+      copy:
+        src: "{{ item }}"
+        dest: /var/www/html/{{ item }}
+      loop:
+        - mysqltest.php
+        - submit.php
+
+    - name: Create webpage config
+      template:
+        src: config.php.j2
+        dest: /var/www/html/config.php
+
+    - name: Install DB CA
+      copy: 
+        src: ovh-db.crt
+        dest: /usr/local/share/ca-certificates/ovh-db.crt
+      notify: "update ca certificates"
+
+  handlers:
+    - name: "run update-ca-certificates"
+      shell: update-ca-certificates
+      listen: "update ca certificates"
