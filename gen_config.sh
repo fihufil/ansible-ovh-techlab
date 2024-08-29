@@ -18,11 +18,11 @@ echo -n "Writing vars/main.yml file... "
 
 cat > vars/main.yml<< EOF
 ---
-server: "$DATABASE_HOST"
-username: "$DATABASE_USERNAME"
-password: "$DATABASE_PASSWORD"
-dbname: "$DATABASE_NAME"
-port: $DATABASE_PORT
+db_server: "$DATABASE_HOST"
+db_username: "$DATABASE_USERNAME"
+db_password: "$DATABASE_PASSWORD"
+db_name: "$DATABASE_NAME"
+db_port: $DATABASE_PORT
 EOF
 
 echo -n "... done!"
