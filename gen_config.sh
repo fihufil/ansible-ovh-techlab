@@ -25,7 +25,7 @@ db_name: "$DATABASE_NAME"
 db_port: $DATABASE_PORT
 EOF
 
-echo -n "... done!"
+echo "... done!"
 
 echo 'Please enter your CA certificate (once pasted press ctrl-d to save!): ' 
 
